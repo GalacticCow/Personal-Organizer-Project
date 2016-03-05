@@ -1,0 +1,19 @@
+#title {
+    background-color: indianred;
+}
+
+#filtersBox {
+    background-color: lightskyblue;
+}
+
+#addItemBox {
+    background-color: lightgreen;
+}
+
+#listBox {
+    background-color: lightyellow;
+}
+
+#listIFrame {
+    width: 70%;
+}
