@@ -27,8 +27,15 @@ function Item(name, description, tags, startTime, endTime) {
     that.tags = getTagIndices(tags);
     that.startTime = startTime;
     that.endTime = endTime;
-
     return that;
+}
+
+/**
+ * Deletes an item from the master list according to its index
+ * @param itemIndex
+ */
+function deleteItem(itemIndex) {
+    masterItems.splice(itemIndex,1);
 }
 
 /**
@@ -74,13 +81,6 @@ function getTagIndices(tagsIn) {
 function addNewTag(tagName) {
     masterTags.push(tagName);
 }
-
-console.log("adding tag1 and tag2 to indices:   " + getTagIndices("tag1 tag2").map(String));
-console.log("current tag list:  " + masterTags);
-console.log("adding tag2 and tag3 to indices:   " + getTagIndices("tag2 tag3").map(String));
-console.log("current tag list:  " + masterTags);
-console.log("adding special tag2, tag3, tag1 to indices:   " + getTagIndices("special tag2 tag3 tag1").map(String));
-console.log("current tag list:  " + masterTags);
 
 
 
