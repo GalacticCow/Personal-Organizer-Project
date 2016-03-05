@@ -36,6 +36,9 @@ function Item(name, description, tags, startTime, endTime) {
  */
 function deleteItem(itemIndex) {
     masterItems.splice(itemIndex,1);
+    //Now that the item master item list is changed, the displayed list is all off-by-one!  Fix this by updating the
+    //current filtered list using the modified master item list.
+    updateFilter();
 }
 
 /**
@@ -46,7 +49,7 @@ function deleteItem(itemIndex) {
  */
 function getTagIndices(tagsIn) {
     //Get the array of tags instead of an input string.
-    var tagsList = tagsIn.split(" ");
+    var tagsList = cleanTags(tagsIn);
     var indices = [];
     //If the tag already exists, push its index.  Otherwise, add it as a new tag, then push its index.
     for(var i = 0; i < tagsList.length; i++) {
@@ -74,6 +77,72 @@ function getTagIndices(tagsIn) {
     return indices;
 }
 
+function updateFilter() {
+    //TODO:  When inputs are up, make this draw inputs from the filter dialogue and call filterByTags and filterByTime.
+    alert("Updating!  Updating!"); //TODO:  Get rid of this.
+}
+
+/**
+ * Takes in a list of tags.  Returns an array of indices into the item array.
+ * @param tagsIn
+ */
+function filterByTags(tagsIn) {
+    var tagsList = cleanTags(tagsIn);
+    var indices = [];
+    //if you stupidly inputted no tags, return indices for everything.
+    if(tagsList.length == 0) {
+        for(var m = 0; m < masterItems.length; m++) {
+            indices.push(m);
+        }
+        return indices;
+    }
+    //Check each item in masterItems to make sure it matches the tags.
+    for(var i = 0; i < masterItems.length; i++) {
+        var cItem = masterItems[i]; //current item
+        //If it has no tags, just don't include it
+        if(cItem.tags.length == 0) {
+            continue; //without pushing to indices.  It's dead to us.
+        }
+        //for each item, if it doesn't match ALL of the tags, don't include it.
+        var itMatches = true;
+        for(var j = 0; j < tagsList.length; j++) {
+            //for each tag being filtered for...
+            var tagIsThere = false;
+            for(var k = 0; k < cItem.tags.length; k++) {
+                //for each tag in the item...! (this is a really ugly triple nested for loop, ick)
+                if(masterTags[cItem.tags[k]] == tagsList[j]) {
+                    tagIsThere = true;
+                }
+            }
+            if(!tagIsThere) {
+                itMatches = false; //never can become true again for this item.  Filtered out.
+            }
+        }
+        //Finally, if it made it through all that checking, it's legit.  Matches all the tags.
+        if(itMatches) {
+            indices.push(i);  //Add the index of the item in the master array.
+        }
+    }
+    return indices;
+}
+
+/**
+ * Formats a raw tag input string, removing junk whitespace tags and splitting it into an array of strings.
+ * @param tagsIn
+ */
+function cleanTags (tagsIn) {
+    //Get the array of tags instead of an input string.
+    var tempTagsList = tagsIn.split(" ");
+    //Remove all junk "" elements, so it works correctly and handles whitespace fine.
+    var tagsList = [];
+    for(var n = 0; n < tempTagsList.length; n++) {
+        if(tempTagsList[n] != "") {
+            tagsList.push(tempTagsList[n]);
+        }
+    }
+    return tagsList;
+}
+
 /**
  * Adds a new tag in the master tag array.
  * @param tagName
@@ -82,6 +151,50 @@ function addNewTag(tagName) {
     masterTags.push(tagName);
 }
 
+
+//test FilterByTags.
+
+//Add these test items w/ tags
+masterItems.push(new Item("dog", "", "animal cute", "", ""));
+masterItems.push(new Item("cat", "", "animal cute", "", ""));
+masterItems.push(new Item("horse", "", "animal", "", ""));
+masterItems.push(new Item("doll", "", "cute", "", ""));
+masterItems.push(new Item("human", "", "animal sentient", "", ""));
+masterItems.push(new Item("rock", "", "", "", ""));
+masterItems.push(new Item("moon", "", "space", "", ""));
+masterItems.push(new Item("alien", "", "space animal sentient", "", ""));
+masterItems.push(new Item("alien dog", "", "space animal sentient cute", "", ""));
+masterItems.push(new Item("robot", "", "sentient", "", ""));
+
+var animals = filterByTags("animal");
+console.log("ANIMALS:  ");
+for(var i = 0; i < animals.length; i++) {
+    console.log(masterItems[animals[i]].name + " ");
+}
+
+var sentients = filterByTags("   sentient ");
+console.log("SENTIENTS:  ");
+for(var j = 0; j < sentients.length; j++) {
+    console.log(masterItems[sentients[j]].name + " ");
+}
+
+var cuteanimals = filterByTags("cute animal");
+console.log("CUTE ANIMALS:   ");
+for(var k = 0; k < cuteanimals.length; k++) {
+    console.log(masterItems[cuteanimals[k]].name + " ");
+}
+
+var nothing = filterByTags("");
+console.log("FORGOT TO INCLUDE A TAG:   ");
+for(var l = 0; l < nothing.length; l++) {
+    console.log(masterItems[nothing[l]].name + " ");
+}
+
+var invalid = filterByTags("truck");
+console.log("TRUCKS (WHYYYYYY THERE ARE NO TRUCKS):    ");
+for(var m = 0; m < invalid.length; m++) {
+    console.log(masterItems[invalid[m]].name + " ");
+}
 
 
 
