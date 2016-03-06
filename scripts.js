@@ -151,52 +151,28 @@ function addNewTag(tagName) {
     masterTags.push(tagName);
 }
 
+function save() {
+    //JSON-ify the master lists.
+    var items = JSON.stringify(masterItems);
+    var tags = JSON.stringify(masterTags);
+    var fileString = items + "\n" + tags;
 
-//test FilterByTags.
+    //Create the text file.
+    var data = new Blob([fileString], {type: 'application/json'});
+    var url  = URL.createObjectURL(data);
 
-//Add these test items w/ tags
-masterItems.push(new Item("dog", "", "animal cute", "", ""));
-masterItems.push(new Item("cat", "", "animal cute", "", ""));
-masterItems.push(new Item("horse", "", "animal", "", ""));
-masterItems.push(new Item("doll", "", "cute", "", ""));
-masterItems.push(new Item("human", "", "animal sentient", "", ""));
-masterItems.push(new Item("rock", "", "", "", ""));
-masterItems.push(new Item("moon", "", "space", "", ""));
-masterItems.push(new Item("alien", "", "space animal sentient", "", ""));
-masterItems.push(new Item("alien dog", "", "space animal sentient cute", "", ""));
-masterItems.push(new Item("robot", "", "sentient", "", ""));
-
-var animals = filterByTags("animal");
-console.log("ANIMALS:  ");
-for(var i = 0; i < animals.length; i++) {
-    console.log(masterItems[animals[i]].name + " ");
+    //Create download link
+    var a = document.createElement('a');
+    a.download    = "savedList.json";
+    a.href        = url;
+    a.textContent = "Download file";
+    document.getElementById("testDiv").appendChild(a);
 }
 
-var sentients = filterByTags("   sentient ");
-console.log("SENTIENTS:  ");
-for(var j = 0; j < sentients.length; j++) {
-    console.log(masterItems[sentients[j]].name + " ");
-}
+masterItems.push(new Item("dog", "it's a dog!", "animal cute", "s", "e"));
+masterItems.push(new Item("cat", "it's a cat!", "animal cute", "s", "e"));
+masterItems.push(new Item("robot", "beep boop bop", "metal AI", "s", "e"));
+masterItems.push(new Item("cute robot", "boop <3", "metal AI cute", "s", "e"));
 
-var cuteanimals = filterByTags("cute animal");
-console.log("CUTE ANIMALS:   ");
-for(var k = 0; k < cuteanimals.length; k++) {
-    console.log(masterItems[cuteanimals[k]].name + " ");
-}
-
-var nothing = filterByTags("");
-console.log("FORGOT TO INCLUDE A TAG:   ");
-for(var l = 0; l < nothing.length; l++) {
-    console.log(masterItems[nothing[l]].name + " ");
-}
-
-var invalid = filterByTags("truck");
-console.log("TRUCKS (WHYYYYYY THERE ARE NO TRUCKS):    ");
-for(var m = 0; m < invalid.length; m++) {
-    console.log(masterItems[invalid[m]].name + " ");
-}
-
-
-
-
+save();
 
