@@ -151,6 +151,12 @@ function addNewTag(tagName) {
     masterTags.push(tagName);
 }
 
+/**
+ * EXPERIMENTAL, SEEMS TO DO SOME WEIRD SHENANIGANS MAYBE?  NEED TO LEARN HOW IT STORES IT TO MAKE SURE I CAN
+ * REASONABLY GET INFORMATION FROM IT LIKE NORMAL.  UNTIL THEN DO NOT USE THIS, IT PROBABLY IS JUNK RIGHT NOW
+ *
+ * Saves the current master lists and appends the generated JSON file to a testDiv (not in the HTML doc yet!)
+ */
 function save() {
     //JSON-ify the master lists.
     var items = JSON.stringify(masterItems);
@@ -168,11 +174,4 @@ function save() {
     a.textContent = "Download file";
     document.getElementById("testDiv").appendChild(a);
 }
-
-masterItems.push(new Item("dog", "it's a dog!", "animal cute", "s", "e"));
-masterItems.push(new Item("cat", "it's a cat!", "animal cute", "s", "e"));
-masterItems.push(new Item("robot", "beep boop bop", "metal AI", "s", "e"));
-masterItems.push(new Item("cute robot", "boop <3", "metal AI cute", "s", "e"));
-
-save();
 
