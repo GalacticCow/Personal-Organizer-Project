@@ -6,9 +6,42 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="title">Personal Organizer: Platinum</div>
-    <div id="filtersBox">THIS IS WHERE THE FILTER DIALOGUE GOES</div>
-    <div id="addItemBox">THIS IS WHERE THE ADD ITEM DIALOGUE GOES</div>
+    <div id="title">Personal Organizer: Platinum
+        <form action="">
+            <input type="button" name="Save" value="Save">
+            <input type="button" name="Load" value="Load">
+        </form>
+    </div>
+    <div id="filtersBox">
+        Filter
+        <form action="">
+            Name:
+            <input type="text" name="Name"><br>
+            Tags:
+            <input type="text" name="Tags"><br>
+            Time:
+            <input type="date" name="Start"><br>
+            To:
+            <input type="date" name="End">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div id="addItemBox">
+        Add New Item
+        <form action="">
+            Name:
+            <input type="text" name="Name"><br>
+            Description:
+            <input type="text" name="Description"><br>
+            Time:
+            <input type="date" name="Start"><br>
+            To:
+            <input type="date" name="End"><br>
+            Tags:
+            <input type="text" name="Tags"><br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
     <div id="listBox"> <!--THIS IS WHERE THE LIST ITSELF GOES-->
         <iframe src="list.html" id="listIFrame"></iframe>
     </div>
