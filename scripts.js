@@ -175,3 +175,21 @@ function save() {
     document.getElementById("testDiv").appendChild(a);
 }
 
+/**
+ * This function will use the master lists to generate the contents of the HTML document inside the display iframe.
+ */
+function generateDisplayedListElements() {
+    //TODO:  make this work.  for loop over filtered elements.
+    //TODO:  Actually, might set up a master "display" list containing indices into the master list.  Do this later.
+}
+
+/**
+ * Takes in an Item object, returns the filled-out HTML element, ready to add to the document.
+ * @param item
+ * @returns {HTMLElement}
+ */
+function createDisplayElementFromItem(item) {
+    var p = document.createElement('p'); //may be a div in the future.
+    //TODO:  Do put stuff in p based on the inputted item
+    return p;
+}
