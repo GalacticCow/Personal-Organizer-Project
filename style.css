@@ -1,17 +1,26 @@
 #title {
     background-color: indianred;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
 }
 
 #filtersBox {
     background-color: lightskyblue;
+    width: 250px;
+    height: 100px;
 }
 
 #addItemBox {
     background-color: lightgreen;
+    width: 250px;
+    height: 200px;
 }
 
 #listBox {
     background-color: lightyellow;
+    left: 300px;
+    width: 70%;
 }
 
 #listIFrame {
