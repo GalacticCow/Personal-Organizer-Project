@@ -255,6 +255,14 @@ function combineLists(list1, list2) {
     return arrayUnique(list1.concat(list2));
 }
 
+/**
+ * Reads the inputs from the adding dialogue, generates a list element from it,
+ * adds it to the master list, and updates the display.
+ */
+function addItem() {
+    //TODO:  Add this.
+}
+
 /*These are some test elements.*/
 masterItems.push(new Item("Dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
 masterItems.push(new Item("Cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
