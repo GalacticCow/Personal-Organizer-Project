@@ -251,6 +251,7 @@ function combineLists(list1, list2) {
     return arrayUnique(list1.concat(list2));
 }
 
+/*These are some test elements.*/
 masterItems.push(new Item("dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
 masterItems.push(new Item("cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
 masterItems.push(new Item("robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));
