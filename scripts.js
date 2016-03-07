@@ -78,13 +78,43 @@ function getTagIndices(tagsIn) {
     return indices;
 }
 
+/**
+ * Updates the current list based on the filters specified in the filter dialogue.  Rebuilds the list
+ * and displays it in the table.
+ */
 function updateList() {
     //Filter elements from dialogues.
     var tagsEl = document.getElementById("tagsFilter");
+    var nameEl = document.getElementById("nameFilter");
     filteredItems = filterByTags(tagsEl.value); //tagsEl.value is a raw string, cleanTags makes it a list.
+    filteredItems = combineLists(filteredItems, filterByName(nameEl.value));
     //TODO:  Filter by everything else.  Use combineLists on filteredItems and the input from filterBySomething
     //Update the display.
     generateDisplayedListElements();
+}
+
+/**
+ * Checks for each item whether it contains an inputted string.
+ * Returns a list of indexes into the masterItems array.  If input is "", returns all indexes in masterItems.
+ * @param nameIn
+ * @returns {Array}
+ */
+function filterByName(nameIn) {
+    var r = [];
+    //Check if it's empty, if so include EVERYTHING.
+    if(nameIn == "") {
+        for(var j = 0; j < masterItems.length; j++) {
+            r.push(j);
+        }
+        return r;
+    }
+    //Assuming now nameIn is legit, filter for it.
+    for(var i = 0; i < masterItems.length; i++) {
+        if(masterItems[i].elname.toLowerCase().contains(nameIn.toLowerCase())) {
+            r.push(i);
+        }
+    }
+    return r;
 }
 
 /**
@@ -234,23 +264,25 @@ function createDisplayElementFromItem(item) {
 }
 
 /**
- * Bit of a hacky way to merge two arrays without any duplicate elements.  It works.
+ * Merge arrays with AND rule (only keep an element if it's in list1 AND list2)
  * @param list1
  * @param list2
  * @returns {*}
  */
 function combineLists(list1, list2) {
-    function arrayUnique(array) {
-        var a = array.concat();
-        for(var i=0; i<a.length; ++i) {
-            for(var j=i+1; j<a.length; ++j) {
-                if(a[i] === a[j])
-                    a.splice(j--, 1);
+    var r = [];
+    for(var i = 0 ; i < list1.length; i++) {
+        var keep = false;
+        for(var j = 0; j < list2.length; j++) {
+            if(list1[i] == list2[j]) {
+                keep = true;
             }
         }
-        return a;
+        if(keep) {
+            r.push(list1[i]);
+        }
     }
-    return arrayUnique(list1.concat(list2));
+    return r;
 }
 
 /**
