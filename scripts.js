@@ -16,12 +16,12 @@ var filteredItems = [];
  * Item(...) returns an item that does great awesome fun stuff.
  * @param name
  * @param description
- * @param tags
  * @param startTime
  * @param endTime
+ * @param tags
  * @constructor
  */
-function Item(name, description, tags, startTime, endTime) {
+function Item(name, description, startTime, endTime, tags) {
     var that = this;
     that.elname = name;
     that.description = description;
