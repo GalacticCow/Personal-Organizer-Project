@@ -138,7 +138,7 @@ function filterByTags(tagsIn) {
 function cleanTags (tagsIn) {
     //replace commas with spaces using a regex.  cleanTags handles extra spaces.  Basically, don't encourage them
     //to use commas, but if they do, handle them.
-    tagsIn.replace(/,/g , " ");
+    tagsIn = tagsIn.replace(/,/g , " ");
     //Get the array of tags instead of an input string.
     var tempTagsList = tagsIn.split(" ");
     //Remove all junk "" elements, so it works correctly and handles whitespace fine.
@@ -256,14 +256,14 @@ function combineLists(list1, list2) {
 }
 
 /*These are some test elements.*/
-masterItems.push(new Item("dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
-masterItems.push(new Item("cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
-masterItems.push(new Item("robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));
-masterItems.push(new Item("person", "This is a person.  Go humans!", "", "", "sentient"));
-masterItems.push(new Item("alien", "This is an alient from outer space!  It has probably come in peace, but be careful.", "", "", "sentient space"));
-masterItems.push(new Item("robot dog alien", "The ultimate life form.", "", "", "sentient animal cute space"));
-masterItems.push(new Item("special enemy Temmie", "This is a temmie.  Beware its deadly fangs.", "", "", "sentient animal cute"));
-masterItems.push(new Item("remember the Alamo.", "The Alamo was a decisive last stand in the wild west, and is famous in Texas" +
+masterItems.push(new Item("Dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
+masterItems.push(new Item("Cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
+masterItems.push(new Item("Robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));
+masterItems.push(new Item("Person", "This is a person.  Go humans!", "", "", "animal sentient"));
+masterItems.push(new Item("Alien", "This is an alien from outer space!  It has probably come in peace, but be careful.", "", "", "sentient space"));
+masterItems.push(new Item("Cyborg Dog Alien", "The ultimate life form.", "", "", "sentient animal cute space"));
+masterItems.push(new Item("Special Enemy Temmie", "Hoi im temmie!", "", "", "sentient animal cute"));
+masterItems.push(new Item("Remember the Alamo.", "The Alamo was a decisive last stand in the wild west, and is famous in Texas" +
                 " as a crucial moment of American pride in combat.", "February 23, 1836", "March 6, 1836", "reminder"));
 masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "Now", "Forever", "reminder"));
 
