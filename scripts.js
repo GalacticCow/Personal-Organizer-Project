@@ -261,7 +261,7 @@ masterItems.push(new Item("Cat", "This is a cat.  It's pretty nice", "", "", "an
 masterItems.push(new Item("Robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));
 masterItems.push(new Item("Person", "This is a person.  Go humans!", "", "", "animal sentient"));
 masterItems.push(new Item("Alien", "This is an alien from outer space!  It has probably come in peace, but be careful.", "", "", "sentient space"));
-masterItems.push(new Item("Cyborg Dog Alien", "The ultimate life form.", "", "", "sentient animal cute space"));
+masterItems.push(new Item("Cyborg Dog Alien", "The ultimate life form.", "", "", "sentient animal cute space cool"));
 masterItems.push(new Item("Special Enemy Temmie", "Hoi im temmie!", "", "", "sentient animal cute"));
 masterItems.push(new Item("Remember the Alamo.", "The Alamo was a decisive last stand in the wild west, and is famous in Texas" +
                 " as a crucial moment of American pride in combat.", "February 23, 1836", "March 6, 1836", "reminder"));
