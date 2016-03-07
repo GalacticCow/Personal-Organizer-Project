@@ -39,7 +39,7 @@ function deleteItem(itemIndex) {
     masterItems.splice(itemIndex,1);
     //Now that the item master item list is changed, the displayed list is all off-by-one!  Fix this by updating the
     //current filtered list using the modified master item list.
-    updateFilter();
+    updateList();
 }
 
 /**
@@ -78,7 +78,7 @@ function getTagIndices(tagsIn) {
     return indices;
 }
 
-function updateFilter() {
+function updateList() {
     //Filter elements from dialogues.
     var tagsEl = document.getElementById("tagsFilter");
     filteredItems = filterByTags(tagsEl.value); //tagsEl.value is a raw string, cleanTags makes it a list.
@@ -272,7 +272,7 @@ function addItem() {
     startIn.value = "";
     endIn.value = "";
     tagsIn.value = "";
-    updateFilter();
+    updateList();
 }
 
 /*These are some test elements.*/
@@ -287,4 +287,4 @@ masterItems.push(new Item("Remember the Alamo.", "The Alamo was a decisive last 
                 " as a crucial moment of American pride in combat.", "February 23, 1836", "March 6, 1836", "reminder"));
 masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "Now", "Forever", "reminder"));
 
-updateFilter();
+updateList();
