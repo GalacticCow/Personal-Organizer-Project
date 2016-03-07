@@ -6,8 +6,9 @@
 var masterItems = [];
 //tags is the master list of all tags.  The only things that can change this are adding, removing, and loading.
 var masterTags = [];
-
-
+//filteredItems is a list of items that have been filtered by the filter dialogue.  It updates, removing/adding
+//elements as needed whenever the update function is called.  Contains indices into masterItems, not items.
+var filteredItems = [];
 
 
 /**
@@ -22,7 +23,7 @@ var masterTags = [];
  */
 function Item(name, description, tags, startTime, endTime) {
     var that = this;
-    that.name = name;
+    that.elname = name;
     that.description = description;
     that.tags = getTagIndices(tags);
     that.startTime = startTime;
@@ -78,8 +79,12 @@ function getTagIndices(tagsIn) {
 }
 
 function updateFilter() {
-    //TODO:  When inputs are up, make this draw inputs from the filter dialogue and call filterByTags and filterByTime.
-    alert("Updating!  Updating!"); //TODO:  Get rid of this.
+    //Filter elements from dialogues.
+    var tagsEl = document.getElementById("tagsFilter");
+    filteredItems = filterByTags(tagsEl.value); //tagsEl.value is a raw string, cleanTags makes it a list.
+    //TODO:  Filter by everything else.  Use combineLists on filteredItems and the input from filterBySomething
+    //Update the display.
+    generateDisplayedListElements();
 }
 
 /**
@@ -131,6 +136,9 @@ function filterByTags(tagsIn) {
  * @param tagsIn
  */
 function cleanTags (tagsIn) {
+    //replace commas with spaces using a regex.  cleanTags handles extra spaces.  Basically, don't encourage them
+    //to use commas, but if they do, handle them.
+    tagsIn.replace(/,/g , " ");
     //Get the array of tags instead of an input string.
     var tempTagsList = tagsIn.split(" ");
     //Remove all junk "" elements, so it works correctly and handles whitespace fine.
@@ -179,8 +187,19 @@ function save() {
  * This function will use the master lists to generate the contents of the HTML document inside the display iframe.
  */
 function generateDisplayedListElements() {
-    //TODO:  make this work.  for loop over filtered elements.
-    //TODO:  Actually, might set up a master "display" list containing indices into the master list.  Do this later.
+    //What it does is actually create the entire table object from scratch, and replace the old one with the new one.
+    var newTable = document.createElement('table');
+    newTable.id = "ListDisplayTable";
+    //Generate each individual row
+    for(var i = 0; i < filteredItems.length; i++) {
+        //using filteredItems, don't want to display items that you don't need to.
+        newTable.appendChild(createDisplayElementFromItem(masterItems[filteredItems[i]]));
+    }
+    //Now replace the original table with the newly generated one.
+    var iframe = document.getElementById('listIFrame');
+    var frameDoc = iframe.contentDocument;
+    var originalTable = frameDoc.getElementById("ListDisplayTable");
+    originalTable.parentNode.replaceChild(newTable, originalTable);
 }
 
 /**
@@ -189,7 +208,56 @@ function generateDisplayedListElements() {
  * @returns {HTMLElement}
  */
 function createDisplayElementFromItem(item) {
-    var p = document.createElement('p'); //may be a div in the future.
-    //TODO:  Do put stuff in p based on the inputted item
-    return p;
+    var newRow = document.createElement('tr'); //the whole row container.
+    newRow.classList.add("listElRow");
+    //Setup classes and contents for main for loop.
+    var classes = ["ListElName", "listElDescription", "listElTimeStart", "listElTimeEnd", "listElTags"];
+    var contents = [item.elname, item.description, item.startTime, item.endTime, ""];
+    for(var i = 0; i < item.tags.length; i++) { //can't just stick in the tags list, got to get the tags themselves.
+        contents[4] += masterTags[item.tags[i]];
+        if(i < item.tags.length - 1) {
+            contents[4] += ", ";
+        }
+    }
+    //Now add them all to p.
+    for(var j= 0; j < classes.length; j++) {
+        var newCell = document.createElement('td');
+        newCell.classList.add("listEl");
+        newCell.classList.add(classes[j]);
+        newCell.innerHTML = contents[j];
+        newRow.appendChild(newCell);
+    }
+    //It should be set up now.  Return the row.  Not added yet to the main table.
+    return newRow;
 }
+
+/**
+ * Bit of a hacky way to merge two arrays without any duplicate elements.  It works.
+ * @param list1
+ * @param list2
+ * @returns {*}
+ */
+function combineLists(list1, list2) {
+    function arrayUnique(array) {
+        var a = array.concat();
+        for(var i=0; i<a.length; ++i) {
+            for(var j=i+1; j<a.length; ++j) {
+                if(a[i] === a[j])
+                    a.splice(j--, 1);
+            }
+        }
+        return a;
+    }
+    return arrayUnique(list1.concat(list2));
+}
+
+masterItems.push(new Item("dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
+masterItems.push(new Item("cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
+masterItems.push(new Item("robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));
+masterItems.push(new Item("person", "This is a person.  Go humans!", "", "", "sentient"));
+masterItems.push(new Item("alien", "This is an alient from outer space!  It has probably come in peace, but be careful.", "", "", "sentient space"));
+masterItems.push(new Item("robot dog alien", "The ultimate life form.", "", "", "sentient animal cute space"));
+masterItems.push(new Item("special enemy Temmie", "This is a temmie.  Beware its deadly fangs.", "", "", "sentient animal cute"));
+masterItems.push(new Item("remember the Alamo.", "The Alamo was a decisive last stand in the wild west, and is famous in Texas" +
+                " as a crucial moment of American pride in combat.", "February 23, 1836", "March 6, 1836", "reminder"));
+masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "Now", "Forever", "reminder"));

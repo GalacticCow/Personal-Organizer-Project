@@ -12,12 +12,25 @@
     </style>
 </head>
 <body>
-    <p>This is a demonstration of how list items display.</p>
-    <p>This is another.</p>
-    <p>In the final version, margins above and below will be more sensible.</p>
-    <p>Doop dee doop dee dooop</p>
-    <p>Lorem Ipsum</p>
-    <p>The rain in Spain falls gently on the Plains</p>
-    <p>The sight of so many list elements fills you with <b>Determination.</b></p>
+    <!-- This is an example of what the generated list elements will look like.-->
+    <table id="ListDisplayTable">
+        <tr class="ListElRow">
+            <td class="listEl ListElName">NAME HERE</td>
+            <td class="listEl ListElDescription">DESCRIPTION HERE</td>
+            <td class="listEl ListElTimeStart">TIME START HERE</td>
+            <td class="listEl ListElTimeEnd">TIME END HERE</td>
+            <td class="listEl ListElTags">TAGS HERE</td>
+        </tr>
+        <!-- This one has the "ex" class too.  This is what happens when you click on an item -- it expands,
+             showing you the full description, tags list, etc.  Normally a list item should only take up one line.
+             But when it has the "ex" class, it should stop showing only one line. -->
+        <tr class="ListElRow ex">
+            <td class="listEl ListElName ex">FULL NAME HERE</td>
+            <td class="listEl ListElDescription ex">FULL DESCRIPTION HERE</td>
+            <td class="listEl ListElTimeStart ex">FULL TIME START HERE</td>
+            <td class="listEl ListElTimeEnd ex">FULL TIME END HERE</td>
+            <td class="listEl ListElTags ex">FULL TAGS HERE</td>
+        </tr>
+    </table>
 </body>
 </html>
