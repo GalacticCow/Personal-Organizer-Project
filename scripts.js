@@ -191,10 +191,8 @@ function generateDisplayedListElements() {
     var newTable = document.createElement('table');
     newTable.id = "ListDisplayTable";
     //Get references to the old table and the headers:
-    var iframe = document.getElementById('listIFrame');
-    var frameDoc = iframe.contentDocument;
-    var originalTable = frameDoc.getElementById("ListDisplayTable");
-    var headers = frameDoc.getElementById("ListDisplayHeaders").cloneNode(true);
+    var originalTable = document.getElementById("ListDisplayTable");
+    var headers = document.getElementById("ListDisplayHeaders").cloneNode(true);
     //Add in the headers first.
     newTable.appendChild(headers);
     //Generate each individual row
@@ -275,7 +273,4 @@ masterItems.push(new Item("Remember the Alamo.", "The Alamo was a decisive last 
                 " as a crucial moment of American pride in combat.", "February 23, 1836", "March 6, 1836", "reminder"));
 masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "Now", "Forever", "reminder"));
 
-/*So that it doesn't try to do crazy list generation while still loading the list page, do this.*/
-document.getElementById('listIFrame').onload = function() {
-    updateFilter();
-};
+updateFilter();
