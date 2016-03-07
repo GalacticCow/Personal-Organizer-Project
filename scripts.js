@@ -258,7 +258,21 @@ function combineLists(list1, list2) {
  * adds it to the master list, and updates the display.
  */
 function addItem() {
-    //TODO:  Add this.
+    /*get DOM element references here*/
+    var nameIn = document.getElementById("addBoxName");
+    var descIn = document.getElementById("addBoxDescription");
+    var startIn = document.getElementById("addBoxStart");
+    var endIn = document.getElementById("addBoxEnd");
+    var tagsIn = document.getElementById("addBoxTags");
+    //Add the element here
+    masterItems.push(new Item(nameIn.value, descIn.value, startIn.value, endIn.value, tagsIn.value));
+    //Clear out the inputs
+    nameIn.value = "";
+    descIn.value = "";
+    startIn.value = "";
+    endIn.value = "";
+    tagsIn.value = "";
+    updateFilter();
 }
 
 /*These are some test elements.*/
