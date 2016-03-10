@@ -11,18 +11,23 @@
 
 #optionsBox {
     display: inline-block;
+    width: 30%;
 }
 
 #filtersBox {
     background-color: lightskyblue;
-    width: 250px;
-    height: 100px;
+    width: 220px;
+    height: 200px;
 }
 
 #addItemBox {
     background-color: lightgreen;
-    width: 250px;
+    /*width: 250px;*/
     height: 200px;
+}
+
+#fillerBox {
+    height: 205px;
 }
 
 #listBox {
@@ -38,6 +43,8 @@
 
 table, th, td {
     border: 1px solid black;
+    /*border-collapse: collapse;*/
+    /*width: 100%;*/
 }
 
 td {
