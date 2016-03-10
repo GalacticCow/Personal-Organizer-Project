@@ -5,6 +5,14 @@
     font-size: 30px;
 }
 
+#saveLoad {
+    display: inline-block;
+}
+
+#optionsBox {
+    display: inline-block;
+}
+
 #filtersBox {
     background-color: lightskyblue;
     width: 250px;
@@ -21,6 +29,7 @@
     background-color: lightyellow;
     left: 300px;
     width: 70%;
+    display: inline-block;
 }
 
 #listIFrame {
