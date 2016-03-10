@@ -7,72 +7,78 @@
 </head>
 <body>
     <div id="title">Personal Organizer: Platinum
-        <form action="">
+        <form action="" id="saveLoad">
             <input type="button" name="Save" value="Save">
             <input type="button" name="Load" value="Load">
         </form>
     </div>
-    <div id="filtersBox">
-        Filter
-        <form action="">
-            Name:
-            <input type="text" name="Name" id="nameFilter"><br>
-            Tags:
-            <input type="text" name="Tags" id="tagsFilter"><br>
-            Time:
-            <input type="date" name="Start"><br>
-            To:
-            <input type="date" name="End">
-            <input type="button" value="filterTest" onclick="updateList();">
-        </form>
-    </div>
-    <div id="addItemBox">
-        Add New Item
-        <form action="">
-            Name:
-            <input type="text" name="Name" id="addBoxName"><br>
-            Description:
-            <input type="text" name="Description" id="addBoxDescription"><br>
-            Time:
-            <input type="date" name="Start" id="addBoxStart"><br>
-            To:
-            <input type="date" name="End" id="addBoxEnd"><br>
-            Tags:
-            <input type="text" name="Tags" id="addBoxTags"><br>
-            <input type="button" value="Add" onclick="addItem();">
-        </form>
-    </div>
-    <div id="listBox"> <!--THIS IS WHERE THE LIST ITSELF GOES-->
-        <table id="ListDisplayTable">
-            <tr id="ListDisplayHeaders">
-                <th>Name</th>
-                <th>Description</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Tags</th>
-            </tr>
-            <!-- This is an example of what the generated list elements will look like.
-                 The "ex" class means it's "expanded", so you've clicked on it and can view the whole description, etc.
-                 TODO:  add the delete button.
+    <table>
+        <td>
+            <div id="filtersBox">
+                Filter
+                <form action="">
+                    Name:
+                    <input type="text" name="Name" id="nameFilter"><br>
+                    Tags:
+                    <input type="text" name="Tags" id="tagsFilter"><br>
+                    Time:
+                    <input type="date" name="Start"><br>
+                    To:
+                    <input type="date" name="End">
+                    <input type="button" value="filterTest" onclick="updateList();">
+                </form>
+            </div>
+            <div id="addItemBox">
+                Add New Item
+                <form action="">
+                    Name:
+                    <input type="text" name="Name" id="addBoxName"><br>
+                    Description:
+                    <input type="text" name="Description" id="addBoxDescription"><br>
+                    Time:
+                    <input type="date" name="Start" id="addBoxStart"><br>
+                    To:
+                    <input type="date" name="End" id="addBoxEnd"><br>
+                    Tags:
+                    <input type="text" name="Tags" id="addBoxTags"><br>
+                    <input type="button" value="Add" onclick="addItem();">
+                </form>
+            </div>
+        </td>
+        <td>
+            <div id="listBox"> <!--THIS IS WHERE THE LIST ITSELF GOES-->
+                <table id="ListDisplayTable">
+                    <tr id="ListDisplayHeaders">
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Tags</th>
+                    </tr>
+                    <!-- This is an example of what the generated list elements will look like.
+                         The "ex" class means it's "expanded", so you've clicked on it and can view the whole description, etc.
+                         TODO:  add the delete button.
 
-            <tr class="ListElRow">
-                <td class="listEl ListElName">NAME HERE</td>
-                <td class="listEl ListElDescription">DESCRIPTION HERE</td>
-                <td class="listEl ListElTimeStart">TIME START HERE</td>
-                <td class="listEl ListElTimeEnd">TIME END HERE</td>
-                <td class="listEl ListElTags">TAGS HERE</td>
-            </tr>
-            <tr class="ListElRow ex">
-                <td class="listEl ListElName ex">FULL NAME HERE</td>
-                <td class="listEl ListElDescription ex">FULL DESCRIPTION HERE</td>
-                <td class="listEl ListElTimeStart ex">FULL TIME START HERE</td>
-                <td class="listEl ListElTimeEnd ex">FULL TIME END HERE</td>
-                <td class="listEl ListElTags ex">FULL TAGS HERE</td>
-            </tr>
+                    <tr class="ListElRow">
+                        <td class="listEl ListElName">NAME HERE</td>
+                        <td class="listEl ListElDescription">DESCRIPTION HERE</td>
+                        <td class="listEl ListElTimeStart">TIME START HERE</td>
+                        <td class="listEl ListElTimeEnd">TIME END HERE</td>
+                        <td class="listEl ListElTags">TAGS HERE</td>
+                    </tr>
+                    <tr class="ListElRow ex">
+                        <td class="listEl ListElName ex">FULL NAME HERE</td>
+                        <td class="listEl ListElDescription ex">FULL DESCRIPTION HERE</td>
+                        <td class="listEl ListElTimeStart ex">FULL TIME START HERE</td>
+                        <td class="listEl ListElTimeEnd ex">FULL TIME END HERE</td>
+                        <td class="listEl ListElTags ex">FULL TAGS HERE</td>
+                    </tr>
 
-            -->
-        </table>
-    </div>
+                    -->
+                </table>
+            </div>
+        </td>
+    </table>
 
     <script src="scripts.js"></script>
 </body>
