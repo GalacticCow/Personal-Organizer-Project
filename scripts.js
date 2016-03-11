@@ -195,12 +195,10 @@ function addNewTag(tagName) {
  */
 function save() {
     //JSON-ify the master lists.
-    var items = JSON.stringify(masterItems);
-    var tags = JSON.stringify(masterTags);
-    var fileString = items + "\n" + tags;
-
+    var stuff = { items: masterItems, tags: masterTags };
+    var all = JSON.stringify(stuff);
     //Create the text file.
-    var data = new Blob([fileString], {type: 'application/json'});
+    var data = new Blob([all], {type: 'application/json'});
     var url  = URL.createObjectURL(data);
 
     //Create download link
@@ -208,7 +206,12 @@ function save() {
     a.download    = "savedList.json";
     a.href        = url;
     a.textContent = "Download file";
-    document.getElementById("testDiv").appendChild(a);
+    a.style       = "display: none";
+    document.getElementById("title").appendChild(a);
+    var b = document.createElement("button");
+    b.value = "foo";
+    a.appendChild(b);
+    b.click();
 }
 
 /**
@@ -230,6 +233,41 @@ function generateDisplayedListElements() {
     }
     //Now replace the original table with the newly generated one.
     originalTable.parentNode.replaceChild(newTable, originalTable);
+}
+
+/**
+ * Called from the load button, simulates a click on a hidden element with the text "Choose.." that can't be changed.
+ */
+function openFileDialog() {
+    document.getElementById("fileLoader").click();
+}
+
+/**
+ * Called from openFileDialogue, opens a page you chose
+ */
+function loadList() {
+    var f = document.getElementById("fileLoader");
+    var files = f.files;
+    f.files = [];
+    readTextFile(files[0]);
+}
+
+/**
+ * Reads a .json file, loads the lists from it, updates.
+ * @param file
+ */
+function readTextFile(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        var text = reader.result;
+        var o = JSON.parse(text);
+        masterItems = o.items;
+        masterTags = o.tags;
+        updateList();
+    };
+
+    reader.readAsText(file);
 }
 
 /**
@@ -318,7 +356,6 @@ function addItem() {
     updateList();
 }
 
-/*These are some test elements.*/
 /*masterItems.push(new Item("Dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
 masterItems.push(new Item("Cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
 masterItems.push(new Item("Robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));

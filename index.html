@@ -7,9 +7,11 @@
 </head>
 <body>
     <div id="title">Personal Organizer: Platinum
-        <form action="" id="saveLoad">
-            <input type="button" name="Save" value="Save">
-            <input type="button" name="Load" value="Load">
+        <form action="" id="SaveLoad">
+            <input type="file" id="fileLoader" name="files" title="Load File" style="display:none" onchange="loadList()"/>
+            <input type="button" id="btnOpenFileDialog" value = "Load" onclick="openFileDialog();"/>
+
+            <input type="button" name="Save" value="Save" onclick="save()">
         </form>
     </div>
     <table>
@@ -25,7 +27,7 @@
                     <input type="text" name="Start" placeholder="mm/dd/yyyy"><br>
                     To:
                     <input type="text" name="End" placeholder="mm/dd/yyyy"> -->
-                    <input type="button" value="filterTest" onclick="updateList();">
+                    <input type="button" value="filter" onclick="updateList();">
                 </form>
             </div>
             <div id="addItemBox">
