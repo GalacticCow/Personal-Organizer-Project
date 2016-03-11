@@ -53,3 +53,8 @@ td {
 th {
     background-color: lightseagreen;
 }
+
+.deleteButton {
+    color: red;
+    cursor: pointer;
+}
