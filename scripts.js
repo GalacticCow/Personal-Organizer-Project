@@ -10,7 +10,6 @@ var masterTags = [];
 //elements as needed whenever the update function is called.  Contains indices into masterItems, not items.
 var filteredItems = [];
 
-
 /**
  * Item is a constructor for an Item object.  It's the basic organizational element.
  * Item(...) returns an item that does great awesome fun stuff.
@@ -88,7 +87,6 @@ function updateList() {
     var nameEl = document.getElementById("nameFilter");
     filteredItems = filterByTags(tagsEl.value); //tagsEl.value is a raw string, cleanTags makes it a list.
     filteredItems = combineLists(filteredItems, filterByName(nameEl.value));
-    //TODO:  Filter by everything else.  Use combineLists on filteredItems and the input from filterBySomething
     //Update the display.
     generateDisplayedListElements();
 }
@@ -316,7 +314,9 @@ masterItems.push(new Item("Alien", "This is an alien from outer space!  It has p
 masterItems.push(new Item("Cyborg Dog Alien", "The ultimate life form.", "", "", "sentient animal cute space cool"));
 masterItems.push(new Item("Special Enemy Temmie", "Hoi im temmie!", "", "", "sentient animal cute"));
 masterItems.push(new Item("Remember the Alamo.", "The Alamo was a decisive last stand in the wild west, and is famous in Texas" +
-                " as a crucial moment of American pride in combat.", "February 23, 1836", "March 6, 1836", "reminder"));
-masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "Now", "Forever", "reminder"));
+" as a crucial moment of American pride in combat.", "February 23 1836", "March 6 1836", "reminder"));
+masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "March 4 2016", "1/2/5 5:30 PM", "reminder"));
 
 updateList();
+
+loadScript("date.js", doThisWhenEverythingIsLoaded);
