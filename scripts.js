@@ -356,7 +356,7 @@ function addItem() {
     updateList();
 }
 
-/*masterItems.push(new Item("Dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
+masterItems.push(new Item("Dog", "This is a dog.  It's pretty cool", "", "", "animal cute"));
 masterItems.push(new Item("Cat", "This is a cat.  It's pretty nice", "", "", "animal cute"));
 masterItems.push(new Item("Robot", "This is a robot.  Beep boop.", "", "", "sentient cool"));
 masterItems.push(new Item("Person", "This is a person.  Go humans!", "", "", "animal sentient"));
@@ -365,6 +365,6 @@ masterItems.push(new Item("Cyborg Dog Alien", "The ultimate life form.", "", "",
 masterItems.push(new Item("Special Enemy Temmie", "Hoi im temmie!", "", "", "sentient animal cute"));
 masterItems.push(new Item("Remember the Alamo.", "The Alamo was a decisive last stand in the wild west, and is famous in Texas" +
 " as a crucial moment of American pride in combat.", "February 23 1836", "March 6 1836", "reminder"));
-masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "March 4 2016", "1/2/5 5:30 PM", "reminder"));*/
+masterItems.push(new Item("Remember to drink your Ovaltine!", "placeholder", "March 4 2016", "1/2/5 5:30 PM", "reminder"));
 
 updateList();

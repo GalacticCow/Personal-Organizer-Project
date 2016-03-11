@@ -32,13 +32,10 @@
 
 #listBox {
     background-color: lightyellow;
-    left: 300px;
+    left: 30%;
     width: 70%;
+    height: 100%;
     display: inline-block;
-}
-
-#listIFrame {
-    width: 70%;
 }
 
 table, th, td {
@@ -57,4 +54,9 @@ th {
 .deleteButton {
     color: red;
     cursor: pointer;
+}
+
+#listDisplayTable {
+    height: 100%;
+    width: 100%;
 }
